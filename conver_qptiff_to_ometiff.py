@@ -12,10 +12,8 @@ def convert_qptiff_to_ometiff_bioformat(input_folder, output_folder, bioformats2
             output_filename = os.path.splitext(filename)[0] + '.ome.tiff'
             output_filepath = os.path.join(output_folder, output_filename)
             intermediate_raw_folder = os.path.join(output_folder, os.path.splitext(filename)[0]+'_raw')
-
-            subprocess.run([bioformats2raw_path,input_filepath,intermediate_raw_folder])
-
-
+            subprocess.run([bioformats2raw_path, input_filepath, intermediate_raw_folder,"-s","0"])
+            # print([bioformats2raw_path, input_filepath, intermediate_raw_folder ,'-s 0'])
             subprocess.run([raw2ometiff_path, intermediate_raw_folder,output_filepath])
             shutil.rmtree(intermediate_raw_folder)
 
